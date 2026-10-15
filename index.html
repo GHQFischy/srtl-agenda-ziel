@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Teamtag planen und eine gemeinsame Agenda erstellen.">
+  <title>Teamtag · Gemeinsame Agenda</title>
+  <link rel="stylesheet" href="agenda.css">
+  <script defer src="vendor/supabase.min.js"></script>
+  <script defer src="config.js"></script>
+  <script defer src="agenda.js"></script>
+</head>
+<body>
+  <header class="topbar"><span class="brand">TEAMTAG<span class="brand-dot">.</span></span><span class="tag">Zusammen planen</span></header>
+  <main>
+    <div id="notice" role="status" aria-live="polite" class="notice" hidden></div>
+    <div id="error" role="alert" class="error" hidden></div>
+    <section id="login-view" class="login-layout" aria-labelledby="login-heading">
+      <div class="welcome">
+        <p class="eyebrow">Ein Tag. Viele gute Ideen.</p>
+        <h1 id="login-heading">Unser Teamtag<br>beginnt hier.</h1>
+        <p class="lead">Plane mit dem Team die Agenda und behalte den gemeinsamen Tagesablauf im Blick.</p>
+        <div class="welcome-line"><span aria-hidden="true">01</span><p>Anmelden. Programmpunkte sammeln. Gemeinsam loslegen.</p></div>
+      </div>
+      <div class="panel login-panel">
+        <p class="eyebrow">Willkommen im Projektteam</p>
+        <h2>Anmelden</h2>
+        <p class="muted">Nutze das Teilnehmerkonto, das für dich angelegt wurde.</p>
+        <form id="login-form">
+          <label for="email">E-Mail-Adresse</label>
+          <input id="email" type="email" autocomplete="username" required>
+          <label for="password">Passwort</label>
+          <input id="password" type="password" autocomplete="current-password" required>
+          <button id="login-button" class="primary" type="submit">Zur Agenda anmelden <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="small muted">Noch kein Zugang? Bitte wende dich an die organisierende Person.</p>
+      </div>
+    </section>
+    <section id="app-view" aria-labelledby="project-heading" hidden>
+      <div class="session-bar"><span id="session-label"></span><button id="logout" class="quiet" type="button">Abmelden</button></div>
+      <p class="eyebrow">Unser gemeinsames Projekt</p>
+      <h1 id="project-heading">Teamtag</h1>
+      <p class="lead project-intro">Wir planen einen Tag für Austausch, neue Ideen und gemeinsame nächste Schritte.</p>
+      <dl class="project-facts">
+        <div><dt>Nächster Meilenstein</dt><dd>12. November 2026</dd></div>
+        <div><dt>Projektstatus</dt><dd><span class="status-dot" aria-hidden="true"></span>In Planung</dd></div>
+        <div><dt>Dein Projektkontakt</dt><dd>Alex aus dem Projektteam</dd></div>
+      </dl>
+      <section class="panel agenda-panel" aria-labelledby="agenda-heading">
+        <div class="agenda-heading"><div><p class="eyebrow">Gemeinsam den Tag gestalten</p><h2 id="agenda-heading">Unsere Agenda</h2></div><button id="refresh" type="button">Aktualisieren <span aria-hidden="true">↻</span></button></div>
+        <p class="muted">Ergänze Programmpunkte für unseren Teamtag. Alle angemeldeten Teilnehmer arbeiten an derselben Agenda.</p>
+        <form id="agenda-form" class="agenda-form">
+          <div><label for="agenda-time">Uhrzeit</label><input id="agenda-time" name="time" type="time" required></div>
+          <div><label for="agenda-title">Agendapunkt</label><input id="agenda-title" name="title" type="text" maxlength="100" placeholder="z. B. Begrüßung und Ziele" required></div>
+          <button class="primary" type="submit">Hinzufügen <span aria-hidden="true">+</span></button>
+        </form>
+        <div class="list-heading"><span>Tagesablauf</span><span id="item-count">Wird geladen …</span></div>
+        <p id="empty" class="empty" hidden>Noch keine Agendapunkte. Wie soll unser Tag starten?</p>
+        <ol id="agenda-items" aria-label="Agendapunkte nach Uhrzeit"></ol>
+        <p id="updated" class="small muted"></p>
+        <p class="small muted">Änderungen werden zentral gespeichert. Über „Aktualisieren“ holst du die neuesten Beiträge des Teams.</p>
+      </section>
+    </section>
+    <noscript><p class="error">Bitte JavaScript aktivieren, um dich anzumelden und die gemeinsame Agenda zu verwenden.</p></noscript>
+  </main>
+  <footer>Teamtag · Fiktives Schulungsprojekt · Alle Projektangaben sind Beispieldaten.</footer>
+</body>
+</html>
